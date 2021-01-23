@@ -5,9 +5,18 @@ export default class NotesList extends Component {
   render() {
     return(
       <ul>
-        <li>
-          <CardItem />
-        </li>
+        { 
+          Array
+            .of('Study', 'Work', 'Work')
+            .map((category, index) => {
+              return(
+                <li key={ index }>
+                  <div>{ category }</div>
+                  <CardItem />
+                </li>
+              );
+            })
+        }
       </ul>
     );
   }

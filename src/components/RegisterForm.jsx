@@ -6,7 +6,7 @@ export default class RegisterForm extends Component {
       <form>
         <input type="text" placeholder="title"/>
         <textarea placeholder="Type your text here..."/>
-        <buton>Create note</buton>
+        <button>Create note</button>
       </form>
     );
   }
