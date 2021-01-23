@@ -1,8 +1,13 @@
 import React from 'react';
+import NotesList from './components/NotesList';
+import RegisterForm from './components/RegisterForm';
 
 function App() {
   return (
-    <h1>Test Clean App</h1>
+    <section>
+      <RegisterForm />
+      <NotesList />
+    </section>
   );
 }
 
