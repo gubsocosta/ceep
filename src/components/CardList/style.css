@@ -1,4 +1,4 @@
-.notes-list {
+.card-list {
   background-color: var(--background);
   flex-grow: 3;
   display: grid;
@@ -7,7 +7,7 @@
   padding-left: 24px;
   padding-top: 24px;
 }
-.notes-list_item {
+.card-list_item {
   margin: 12px;
   max-width: 240px;
   max-height: 400px;
