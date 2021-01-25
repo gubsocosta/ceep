@@ -24,8 +24,12 @@ export default class App extends Component {
     this.setState(newState);
   }
 
-  deleteCard () {
-    console.log('card deleted');
+  deleteCard (index) {
+    const list = this.state.list;
+
+    list.splice(index, 1);
+
+    this.setState({ list });
   }
 
   render() {
@@ -34,7 +38,7 @@ export default class App extends Component {
         <RegisterForm createCard={this.createCard.bind(this)} />
         <CardList 
           list={this.state.list}
-          deleteCard={this.deleteCard}
+          deleteCard={this.deleteCard.bind(this)}
         />
       </section>
     );

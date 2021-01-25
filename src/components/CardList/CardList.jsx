@@ -1,7 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 
 import CardItem from '../CardItem';
@@ -15,8 +11,10 @@ export default class CardList extends Component {
           this.props.list.map((item, index) => (
             <li key={index} className="card-list_item">
               <CardItem
+                index={index}
                 title={item.title}
                 body={item.body}
+                deleteCard={this.props.deleteCard}
               />
             </li>
           ))

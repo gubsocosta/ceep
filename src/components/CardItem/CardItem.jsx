@@ -1,10 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 
 import './style.css';
@@ -12,7 +5,7 @@ import { ReactComponent as DeleteSVG } from '../../assets/icons/delete.svg';
 
 export default class CardItem extends Component {
   _deleteCard() {
-    console.log('card deleted');
+    this.props.deleteCard(this.props.index);
   }
 
   render() {
