@@ -1,3 +1,7 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 
 import './style.css';
@@ -30,19 +34,19 @@ export default class RegisterForm extends Component {
     return (
       <form
         className="register-form"
-        onSubmit={ this._createCard.bind(this) }
+        onSubmit={this._createCard.bind(this)}
       >
         <input
           type="text"
           placeholder="title"
           className="register-form_input"
-          onChange={ this._handleOnChangeTitle.bind(this) }
+          onChange={this._handleOnChangeTitle.bind(this)}
         />
         <textarea
           placeholder="Type your text here..."
-          rows={ 15 }
+          rows={15}
           className="register-form_input"
-          onChange={ this._handleOnChangeBody.bind(this) }
+          onChange={this._handleOnChangeBody.bind(this)}
         />
         <button className="register-form_input register-form_submit">Create note</button>
       </form>
