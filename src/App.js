@@ -15,7 +15,6 @@ export default class App extends Component {
 
   createCard(title, body) {
     const newCard = { title, body };
-    // eslint-disable-next-line react/destructuring-assignment
     const newList = [...this.state.list, newCard];
 
     const newState = {
@@ -25,14 +24,18 @@ export default class App extends Component {
     this.setState(newState);
   }
 
+  deleteCard () {
+    console.log('card deleted');
+  }
+
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <section className="content">
-        {/* eslint-disable-next-line react/jsx-no-bind */}
         <RegisterForm createCard={this.createCard.bind(this)} />
-        {/* eslint-disable-next-line react/destructuring-assignment */}
-        <CardList list={this.state.list} />
+        <CardList 
+          list={this.state.list}
+          deleteCard={this.deleteCard}
+        />
       </section>
     );
   }
