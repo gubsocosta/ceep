@@ -12,8 +12,10 @@ export default class CardItem extends Component {
     return (
       <section className="card-item">
         <header className="card-item_header">
-          <h3 className="card-item_title">{ this.props.title }</h3>
-          <DeleteSVG onClick={this._deleteCard.bind(this)} />
+          <h3 className="card-item_title">{this.props.title}</h3>
+          <DeleteSVG 
+            onClick={this._deleteCard.bind(this)}
+          />
         </header>
         <p className="card-item_body">
           {this.props.body}

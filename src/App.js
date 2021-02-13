@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import CardList from './components/CardList';
 import RegisterForm from './components/RegisterForm';
+import CardList from './components/CardList';
+import CategoryList from './components/CategoryList';
 import './assets/index.css';
 import './assets/App.css';
 
@@ -9,16 +10,21 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      list: [],
+      cardList: [],
+      categoryList: ['Cat 01', 'Cat 02', 'Cat 03'],
     };
+    this.deleteCard = this.deleteCard.bind(this);
+    this.createCard = this.createCard.bind(this);
+    this.addCategory = this.addCategory.bind(this);
   }
 
   createCard(title, body) {
     const newCard = { title, body };
-    const newList = [...this.state.list, newCard];
+    const newCardList = [...this.state.cardList, newCard];
 
     const newState = {
-      list: newList,
+      ...this.state,
+      cardList: newCardList,
     };
 
     this.setState(newState);
@@ -32,14 +38,29 @@ export default class App extends Component {
     this.setState({ list });
   }
 
+  addCategory(nameCategory) {
+    const newCategoryList = [...this.state.categoryList, nameCategory];
+    const newState = {
+      ...this.state,
+      categoryList: newCategoryList
+    };
+    this.setState(newState); 
+  }
+
   render() {
     return (
       <section className="content">
-        <RegisterForm createCard={this.createCard.bind(this)} />
-        <CardList 
-          list={this.state.list}
-          deleteCard={this.deleteCard.bind(this)}
-        />
+        <RegisterForm createCard={this.createCard.bind} />
+        <main className="content-main">
+          <CategoryList
+            addCategory={this.addCategory}
+            list={this.state.categoryList}
+          />
+          <CardList 
+            list={this.state.cardList}
+            deleteCard={this.deleteCard.bind}
+          />
+        </main>
       </section>
     );
   }
