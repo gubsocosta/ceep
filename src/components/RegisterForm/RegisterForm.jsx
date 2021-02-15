@@ -1,8 +1,5 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
+import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 import './style.css';
 
@@ -11,6 +8,12 @@ export default class RegisterForm extends Component {
     super(props);
     this.title = '';
     this.body = '';
+    this.category = 'no category';
+
+    this._handleOnChangeTitle = this._handleOnChangeTitle.bind(this);
+    this._handleOnChangeBody = this._handleOnChangeBody.bind(this);
+    this._handleOnChangeCategory = this._handleOnChangeCategory.bind(this);
+    this._createCard = this._createCard.bind(this);
   }
 
   _handleOnChangeTitle(event) {
@@ -23,11 +26,16 @@ export default class RegisterForm extends Component {
     this.body = event.target.value;
   }
 
+  _handleOnChangeCategory(event) {
+    event.stopPropagation();
+    this.category = event.target.value;
+  }
+
   _createCard(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    this.props.createCard(this.title, this.body);
+    this.props.createCard(this.title, this.body, this.category);
   }
 
   render() {
@@ -36,18 +44,32 @@ export default class RegisterForm extends Component {
         className="register-form"
         onSubmit={this._createCard.bind(this)}
       >
+        <select
+          className="register-form_input"
+          onChange={this._handleChangeCategory}
+        >
+          <option value="No category">No category</option>
+          { this.props.list.map((item, index) => {
+              return (
+                <option key={index} value={item}>{item}</option>
+              );
+            }) }
+        </select>
+        
         <input
           type="text"
           placeholder="title"
           className="register-form_input"
-          onChange={this._handleOnChangeTitle.bind(this)}
+          onChange={this._handleOnChangeTitle}
         />
+
         <textarea
           placeholder="Type your text here..."
           rows={15}
           className="register-form_input"
-          onChange={this._handleOnChangeBody.bind(this)}
+          onChange={this._handleOnChangeBody}
         />
+        
         <button className="register-form_input register-form_submit">Create note</button>
       </form>
     );

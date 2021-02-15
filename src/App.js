@@ -11,15 +11,15 @@ export default class App extends Component {
     super();
     this.state = {
       cardList: [],
-      categoryList: ['Cat 01', 'Cat 02', 'Cat 03'],
+      categoryList: [],
     };
     this.deleteCard = this.deleteCard.bind(this);
     this.createCard = this.createCard.bind(this);
     this.addCategory = this.addCategory.bind(this);
   }
 
-  createCard(title, body) {
-    const newCard = { title, body };
+  createCard(title, body, category) {
+    const newCard = { title, body, category };
     const newCardList = [...this.state.cardList, newCard];
 
     const newState = {
@@ -34,7 +34,7 @@ export default class App extends Component {
     const newCardList = this.state.cardList;
 
     newCardList.splice(index, 1);
-    
+
     const newState = {
       ...this.state,
       cardList: newCardList
@@ -55,7 +55,10 @@ export default class App extends Component {
   render() {
     return (
       <section className="content">
-        <RegisterForm createCard={this.createCard} />
+        <RegisterForm
+          createCard={this.createCard}
+          list={this.state.categoryList}
+        />
         <main className="content-main">
           <CategoryList
             addCategory={this.addCategory}

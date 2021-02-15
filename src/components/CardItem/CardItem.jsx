@@ -16,6 +16,7 @@ export default class CardItem extends Component {
           <DeleteSVG 
             onClick={this._deleteCard.bind(this)}
           />
+          <h4>{this.props.category}</h4>
         </header>
         <p className="card-item_body">
           {this.props.body}
