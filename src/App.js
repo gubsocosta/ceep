@@ -1,72 +1,37 @@
 import React, { Component } from 'react';
 
-import RegisterForm from './components/RegisterForm';
-import CardList from './components/CardList';
-import CategoryList from './components/CategoryList';
+import CardListComponent from './components/CardList';
+import CategoryListComponent from './components/CategoryList';
+import RegisterFormComponent from './components/RegisterForm';
+import CardList from './data/CardList';
+import CategoryList from './data/CategoryList';
+
 import './assets/index.css';
 import './assets/App.css';
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-      cardList: [],
-      categoryList: [],
-    };
-    this.deleteCard = this.deleteCard.bind(this);
-    this.createCard = this.createCard.bind(this);
-    this.addCategory = this.addCategory.bind(this);
-  }
 
-  createCard(title, body, category) {
-    const newCard = { title, body, category };
-    const newCardList = [...this.state.cardList, newCard];
-
-    const newState = {
-      ...this.state,
-      cardList: newCardList,
-    };
-
-    this.setState(newState);
-  }
-
-  deleteCard (index) {
-    const newCardList = this.state.cardList;
-
-    newCardList.splice(index, 1);
-
-    const newState = {
-      ...this.state,
-      cardList: newCardList
-    }
-
-    this.setState(newState);
-  }
-
-  addCategory(nameCategory) {
-    const newCategoryList = [...this.state.categoryList, nameCategory];
-    const newState = {
-      ...this.state,
-      categoryList: newCategoryList
-    };
-    this.setState(newState); 
+    this.cardList = new CardList();
+    this.categoryList = new CategoryList();
   }
 
   render() {
     return (
       <section className="content">
-        <RegisterForm
-          createCard={this.createCard}
-          list={this.state.categoryList}
+        <RegisterFormComponent
+          list={this.categoryList.list}
+          addCard={this.cardList.addCard}
         />
         <main className="content-main">
-          <CategoryList
-            addCategory={this.addCategory}
-            list={this.state.categoryList}
+          <CategoryListComponent
+            list={this.categoryList.list}
+            addCategory={this.categoryList.addCategory}
           />
-          <CardList 
-            list={this.state.cardList}
-            deleteCard={this.deleteCard}
+          <CardListComponent 
+            list={this.cardList.list}
+            removeCard={this.cardList.removeCard}
           />
         </main>
       </section>

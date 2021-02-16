@@ -15,7 +15,7 @@ export default class CardList extends Component {
                 title={item.title}
                 body={item.body}
                 category={item.category}
-                deleteCard={this.props.deleteCard}
+                removeCard={this.props.removeCard}
               />
             </li>
           ))

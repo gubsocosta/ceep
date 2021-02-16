@@ -13,7 +13,7 @@ export default class RegisterForm extends Component {
     this._handleOnChangeTitle = this._handleOnChangeTitle.bind(this);
     this._handleOnChangeBody = this._handleOnChangeBody.bind(this);
     this._handleOnChangeCategory = this._handleOnChangeCategory.bind(this);
-    this._createCard = this._createCard.bind(this);
+    this._addCard = this._addCard.bind(this);
   }
 
   _handleOnChangeTitle(event) {
@@ -31,18 +31,18 @@ export default class RegisterForm extends Component {
     this.category = event.target.value;
   }
 
-  _createCard(event) {
+  _addCard(event) {
     event.preventDefault();
     event.stopPropagation();
 
-    this.props.createCard(this.title, this.body, this.category);
+    this.props.addCard(this.title, this.body, this.category);
   }
 
   render() {
     return (
       <form
         className="register-form"
-        onSubmit={this._createCard.bind(this)}
+        onSubmit={this._addCard.bind(this)}
       >
         <select
           className="register-form_input"
