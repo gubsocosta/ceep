@@ -6,7 +6,7 @@ import { ReactComponent as DeleteSVG } from '../../assets/icons/delete.svg';
 export default class CardItem extends Component {
   constructor(props) {
     super(props);
-    this._removeCard = this.deleteCard.bind(this);
+    this._removeCard = this._removeCard.bind(this);
   }
 
   _removeCard() {

@@ -21,17 +21,17 @@ export default class App extends Component {
     return (
       <section className="content">
         <RegisterFormComponent
-          list={this.categoryList.list}
-          addCard={this.cardList.addCard}
+          categoryList={this.categoryList}
+          addCard={this.cardList.addCard.bind(this.cardList)}
         />
         <main className="content-main">
           <CategoryListComponent
-            list={this.categoryList.list}
-            addCategory={this.categoryList.addCategory}
+            categoryList={this.categoryList}
+            addCategory={this.categoryList.addCategory.bind(this.categoryList)}
           />
           <CardListComponent 
-            list={this.cardList.list}
-            removeCard={this.cardList.removeCard}
+            cardList={this.cardList}
+            removeCard={this.cardList.removeCard.bind(this.cardList)}
           />
         </main>
       </section>

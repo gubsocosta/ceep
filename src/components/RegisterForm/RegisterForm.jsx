@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 
 import './style.css';
 
@@ -9,11 +8,25 @@ export default class RegisterForm extends Component {
     this.title = '';
     this.body = '';
     this.category = 'no category';
+    this.state = {categoryList: []};
 
     this._handleOnChangeTitle = this._handleOnChangeTitle.bind(this);
     this._handleOnChangeBody = this._handleOnChangeBody.bind(this);
     this._handleOnChangeCategory = this._handleOnChangeCategory.bind(this);
     this._addCard = this._addCard.bind(this);
+    this._newCategoryList = this._newCategoryList.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.categoryList.subscribe(this._newCategoryList);
+  }
+
+  componentWillUnmount() {
+    this.props.categoryList.unsubscribe(this._newCategoryList);
+  }
+
+  _newCategoryList(categoryList) {
+    this.setState({...this.state, categoryList});
   }
 
   _handleOnChangeTitle(event) {
@@ -42,18 +55,19 @@ export default class RegisterForm extends Component {
     return (
       <form
         className="register-form"
-        onSubmit={this._addCard.bind(this)}
+        onSubmit={this._addCard}
       >
         <select
           className="register-form_input"
           onChange={this._handleChangeCategory}
         >
           <option value="No category">No category</option>
-          { this.props.list.map((item, index) => {
-              return (
-                <option key={index} value={item}>{item}</option>
-              );
-            }) }
+          { this.state.categoryList
+              .map((item, index) => {
+                return (
+                  <option key={index} value={item}>{item}</option>
+                );
+              }) }
         </select>
         
         <input
